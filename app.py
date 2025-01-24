@@ -5,8 +5,8 @@ import os
 
 app = Flask(__name__)
 
-# Папка для сохранения обработанных фотографий
-SAVE_FOLDER = "/storage/emulated/0/ExifCopy"
+# Папка для сохранения обработанных фотографий (в рабочей директории)
+SAVE_FOLDER = os.path.join(os.getcwd(), "ExifCopy")
 if not os.path.exists(SAVE_FOLDER):
     os.makedirs(SAVE_FOLDER)
 
@@ -66,4 +66,5 @@ def index():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 5000))  # Render использует переменную PORT
+    app.run(host
